@@ -23,7 +23,7 @@ Before test Test execution, the following configuraiton need modified.
 1. Activate Python 3 venv. From the repository root folder: . pkg/atsenv/bin/activate
 2. Add your own root folder to Python path, example: export PYTHONPATH=/home/spirent/vincent6/SDWAN-Testpack.
 3. Run tests. Tests can be run using robot command, as follows:
-robot -v testbed_config:testbeds_lab/sd-wan.yaml -V testbeds_lab/sd-wan_testbedMap.py -t sd-wan.resiliency_link.001 -d testrun`date +%Y_%m_%d__%H_%M_%S` test_cases/sd-wan/core.robot
+robot -v testbed_config:testbeds_lab/sd-wan.yaml -V testbeds_lab/sd-wan_testbedMap.py -t sd-wan.resiliency_link.002 -d testrun`date +%Y_%m_%d__%H_%M_%S` test_cases/sd-wan/core.robot
 
 Refer to Robot framework user guide for complete syntax of robot command, including pattern matching for selecting testcases to be executed based on testcase ids or tags. Refer to Section 4.1.4 for reporting test status.
 
