@@ -5,9 +5,9 @@ This archive contains the source code and other files for Testpack.
 
 ## Topics
 - [Installation](https://github.com/SpirentOrion/SDWAN-Testpack#Installation)
-- [Testbed information](https://github.com/SpirentOrion/SDWAN-Testpack#Testbed information)
-- [Test execution](https://github.com/SpirentOrion/SDWAN-Testpack#Test execution)
-- [Repository Files](https://github.com/SpirentOrion/SDWAN-Testpack#Repository Folders)
+- [Testbed information](https://github.com/SpirentOrion/SDWAN-Testpack#Testbed-information)
+- [Test execution](https://github.com/SpirentOrion/SDWAN-Testpack#Test-execution)
+- [Repository Files](https://github.com/SpirentOrion/SDWAN-Testpack#Repository-Folders)
 
 ## Installation
 1. Make sure Python3.4 or higher is installed on your system, On Debian/Ubuntu systems, build-essential and python3-venv also need installed. For running RIDE, Robot framework's free GUI, Python 3.6 or higher is required.
