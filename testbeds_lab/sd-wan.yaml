@@ -264,7 +264,7 @@ sne1: &sne1
   stc_config:
     ifCount: '1 1'
     ifStack: 'Ipv4If EthIIIf'
-    linkType: 'L3 Forwarding Link'
+    LinkType: 'L3 Forwarding Link'
     frameLength: '512'
     waitTimeAfterDisableSne : 30
     waitTimeAfterBreakLink : 30
