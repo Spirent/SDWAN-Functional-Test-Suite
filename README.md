@@ -28,7 +28,7 @@ robot -v testbed_config:testbeds_lab/sd-wan.yaml -V testbeds_lab/sd-wan_testbedM
 Refer to Robot framework user guide for complete syntax of robot command, including pattern matching for selecting testcases to be executed based on testcase ids or tags. Refer to Section 4.1.4 for reporting test status.
 
 We support -v validate:1 argument for just validating testbed files without running tests.
-robot -v testbed_config:testbeds_lab/sd-wan.yaml -V testbeds_lab/sd-wan_testbedMap.py -t sd-wan.resiliency_link.001 -v validate:1 -d testrun`date+%Y_%m_%d__%H_%M_%S` test_cases/sd-wan/core.robot
+robot -v testbed_config:testbeds_lab/sd-wan.yaml -V testbeds_lab/sd-wan_testbedMap.py -t sd-wan.resiliency_link.002 -v validate:1 -d testrun`date+%Y_%m_%d__%H_%M_%S` test_cases/sd-wan/core.robot
 ## Repository Folders
 1. Testcases are organized into test_cases folders, see example:test_cases/sd-wan/.We use Robot automation framework as our test runner. Test cases are defined in robot files that accompany Python test scripts. These robot files, such as test_cases/sd-wan/core.robot are the wrappers for Robot framework. They seamlessly call test functions in Python scripts. A set of related test cases can be defined in a single .robot script. Every testcase must have a unique, immutable identifier. This will identify the testcase in the metadata file and in the Robot file. Testcase ids will follow the format <testpack>.<area>.###, that is the unique testpack name along with a 3 digit testcase number relative to a testpack. For example, sd-wan.path_selection.001.
 Every test case should be accompanied by metadata, see example test_cases/sd-wan/metadata/sd-wan.path_selection.001.yaml.
