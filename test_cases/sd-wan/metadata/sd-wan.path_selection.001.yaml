@@ -1,0 +1,17 @@
+id: sd-wan.path_selection.001
+name: 'SD-WAN_Path_Selection_L2_to_L4_Steering'
+description: 'SD-WAN Path selection L2 to L4 steering'
+objective: 'Validate DUT can steer traffic from Internet link to MPLS link if link blackout was detected on Internet link and vice versa'
+run_info: {
+  equipment: [{type: pga, count: 2}, {type: network_emulator, count: 1}],
+  duration: 300,
+  procedure: '1. Perform ARP on all STC devices and all stream blocks  2. Start traffic on all STC ports',
+  initial_config: '1. Set IpAddress for interface of Dut1ToClient to 11.1.1.1  2. Set IpAddress for interface of Dut1ToClient to 11.1.1.1  3. policies must be applied to DUT to steer stream 1, 4, 5, 8 towards Internet link and steer stream 2, 3, 6 ,7 towards MPLS link',
+  expected_results: '1. All ARPs are resolved successfully for procedure 1  2. All generators are started successfully',
+}
+owner: { name: 'Samuel Yuan'}
+version: 'Draft 0.1'
+test_type: [functional, performance]
+test_area: 'SD-WAN Path Selection'
+dut_target: [sd-wan]
+test_suites: [smoke]

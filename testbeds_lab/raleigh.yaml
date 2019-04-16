@@ -1,0 +1,99 @@
+############
+# Labservers
+############
+spirent_lab_server_1:
+  ipv4: &ls_1 10.28.237.143
+spirent_lab_server_2:
+  ipv4: &ls_2 10.28.237.122
+############
+# STC
+############
+stc_1:
+  ipv4: &chassis_1 10.6.2.218
+stc_2:
+  ipv4: &chassis_2 10.61.67.152
+############
+# DUTs
+############
+router_1: &rtr_1
+  hostname: CO7609
+  os: iosxe
+  type: iosxe
+  username: admin
+  password: admin
+  enable: spirent
+  connections:
+    protocol: telnet
+    ipv4: 10.6.2.190
+router_2: &rtr_2
+  hostname: "Junos-M20"
+  os: junos
+  type: router
+  login_prompt: "login:"
+  password_prompt: "Password:"
+  username: anita
+  password: Spirent
+  connections:
+    protocol: telnet
+    ipv4: 10.6.2.183
+############
+# Testbeds #
+############
+2Stc1Router_Type01_Testbed01:
+  lab_server: *ls_1
+  stc:
+    port1:
+      chassis: *chassis_1
+      slot: 11
+      port: 11
+      ipv4: "30.0.1.2/24"
+      gateway: "30.0.1.1"
+      stc_config:
+        phy: EthernetCopper
+    port2:
+      chassis: *chassis_1
+      slot: 11
+      port: 12
+      ipv4: "30.0.2.2/24"
+      gateway: "30.0.2.1"
+      bgp:
+        as_num: 123
+        dut_as_num: 123
+        use_gateway_as_dut: true
+      stc_config:
+        phy: EthernetCopper
+  dut1:
+    <<: *rtr_1
+    dut1_to_stc_port1:
+      port: "GigabitEthernet8/37"
+      type: "GigabitEthernet 8/37"
+    dut1_to_stc_port2:
+      port: "GigabitEthernet8/38"
+      type: "GigabitEthernet 8/38"
+2Stc1Router_Type01_Testbed02:
+  lab_server: *ls_1
+  stc:
+    port1:
+      chassis: *chassis_1
+      slot: 11
+      port: 11
+      ipv4: "30.0.1.2/24"
+      gateway: "30.0.1.1"
+      stc_config:
+        phy: EthernetFiber
+    port2:
+      chassis: *chassis_1
+      slot: 11
+      port: 12
+      ipv4: "30.0.2.2/24"
+      gateway: "30.0.2.1"
+      stc_config:
+        phy: EthernetFiber
+  dut1:
+    <<: *rtr_2
+    dut1_to_stc_port1:
+      port: "GigabitEthernet2/1/0"
+      type: "GigabitEthernet-2/1/0"
+    dut1_to_stc_port2:
+      port: "GigabitEthernet2/2/0"
+      type: "GigabitEthernet-2/2/0"

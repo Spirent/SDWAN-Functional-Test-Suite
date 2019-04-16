@@ -1,0 +1,57 @@
+testbed:
+  name: 3Stc1Sne2Dut_Type01
+  servers:
+    SpirentLab:
+      type: stc-lab-server
+      address: {{ lab_server }}
+  custom:
+    stc_config: {{ stc_config }}
+devices:
+  stc-client-port:
+    os: spirent
+    type: stc
+    connections: {}
+  stc-mpls-port:
+    os: spirent
+    type: stc
+    connections: {}
+  stc-inet-port:
+    os: spirent
+    type: stc
+    connections: {}
+  sne:
+    os: spirent
+    type: sne
+    connections:
+      chassis:
+        ip: {{ sne1.ipv4}}
+topology:
+  stc-client-port:
+    interfaces:
+      {{ stc.client_port.slot }}/{{ stc.client_port.port }}:
+        chassis: {{ stc.client_port.chassis }}
+        link: stc.client_port_to_dut1_port1
+        type: stc-port
+        stc_config: {{ stc.client_port.stc_config }}
+  stc-mpls-port:
+    interfaces:
+      {{ stc.mpls_port.slot }}/{{ stc.mpls_port.port }}:
+        chassis: {{ stc.mpls_port.chassis }}
+        link: stc.mpls_port_to_dut1_port2
+        type: stc-port
+        stc_config: {{ stc.mpls_port.stc_config }}
+  stc-inet-port:
+    interfaces:
+      {{ stc.inet_port.slot }}/{{ stc.inet_port.port }}:
+        chassis: {{ stc.inet_port.chassis }}
+        link: stc.inet_port_to_dut2_port2
+        type: stc-port
+        stc_config: {{ stc.inet_port.stc_config }}
+  sne:
+    interfaces:
+      1/{{ sne1.sne1_to_dut1.port }}:
+        alias: port1
+        type: sne-port
+      1/{{ sne1.sne1_to_dut2.port }}:
+        alias: port2
+        type: sne-port
