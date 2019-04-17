@@ -193,6 +193,95 @@ sne1: &sne1
             DeviceCount: '200'
             Ipv4If:
               Address: '200.0.0.1'
+3Stc1Dut_Type01_Testbed02:
+  stc_config:
+    ifStack: 'Ipv4If EthIIIf'
+    ifCount: '1 1'
+    LinkType: 'L3 Forwarding Link'
+    ClientLoadProfile:
+      Http:
+        LoadType: CONNECTIONS_PER_TIME_UNIT
+        MaxConnectionsAttempted: 1500
+        MaxOpenConnections: 20
+      Sip:
+        MaxConnectionsAttempted: 200
+        LoadType: CONNECTIONS_PER_TIME_UNIT
+        MaxOpenConnections: 10
+  lab_server: *ls_1
+  stc:
+    client_port:
+      chassis: *chassis_1
+      slot: 1
+      port: 1
+      stc_config:
+        Name: Client-Port
+        Phy:
+        Speed:
+        AutoNegotiation:
+        EmulatedDevice:
+          EmulatedDevice1:
+              Name: Client-Head
+              Ipv4If:
+                Address: 150.0.0.1
+                Prefixlength: 24
+                Gateway: 150.0.0.2
+          EmulatedDevice2:
+              Name: Client-Device1
+              DeviceCount: 10
+              Ipv4If:
+                Address: 101.0.0.1
+                Prefixlength: 24
+                Gateway: 150.0.0.2
+              Sip:
+                UaNumFormat: 'Caller_%08u'          
+    mpls_port:
+      chassis: *chassis_2
+      slot: 1
+      port: 1
+      stc_config:
+        Name: MPLS-Port
+        Phy:
+        Speed:
+        AutoNegotiation:
+        EmulatedDevice:
+          EmulatedDevice1:
+              Name: MPLS-Head
+              Ipv4If:
+                Address: 150.0.1.1
+                Prefixlength: 24
+                Gateway: 150.0.1.2
+          EmulatedDevice2:
+              Name: MPLS-Device1
+              DeviceCount: 20
+              Ipv4If:
+                Address: 200.0.0.1
+                Prefixlength: 24
+                Gateway: 150.0.1.2
+              Sip:
+                UaNumFormat: 'Callee_%06u'             
+    inet_port:
+      chassis: *chassis_3
+      slot: 1
+      port: 1
+      stc_config:
+        Name: Internet-Port
+        Phy:
+        Speed:
+        AutoNegotiation:
+        EmulatedDevice:
+          EmulatedDevice1:
+              Name: Internet-Head
+              Ipv4If:
+                Address: 150.0.2.1
+                Prefixlength: 24
+                Gateway: 150.0.2.2
+          EmulatedDevice2:
+              Name: Internet-Device1
+              DeviceCount: 20
+              Ipv4If:
+                Address: 200.0.0.1
+                Prefixlength: 24
+                Gateway: 150.0.2.2
 ###################3Stc1Sne1Dut_Type01##################
 #                                                      #
 #                         +------------+               #

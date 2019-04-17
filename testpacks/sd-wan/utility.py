@@ -13,6 +13,7 @@ class stc_config_sdwan():
             exec("self.gatewayDevice{0} = self.getValue(cfg, ['EmulatedDevice','EmulatedDevice{1}','Ipv4If','Gateway'])".format(i, i))
             exec("self.nameDevice{0} = self.getValue(cfg, ['EmulatedDevice','EmulatedDevice{1}','Name'])".format(i, i))
             exec("self.countDevice{0} = self.getValue(cfg, ['EmulatedDevice','EmulatedDevice{1}','DeviceCount'])".format(i, i))
+            exec("self.sipUaNumFormatDevice{0} = self.getValue(cfg, ['EmulatedDevice','EmulatedDevice{1}','Sip', 'UaNumFormat'])".format(i, i))
         for i in range(1,STREAMNUMBER):
             exec("self.nameStream{0} = self.getValue(cfg, ['StreamBlock','StreamBlock{1}','Name'])".format(i, i))
             exec("self.frameLengthMode{0} = self.getValue(cfg, ['StreamBlock', 'StreamBlock{1}', 'FrameLengthMode'])".format(i, i))
@@ -22,6 +23,12 @@ class stc_config_sdwan():
             exec("self.rangeModifierStream{0} = self.getValue(cfg, ['StreamBlock','StreamBlock{1}','RangeModifier'])".format(i, i))
 
         self.namePort = self.getValue(cfg, ['Name'])
+        self.httpClientLoadType = self.getValue(cfg, ['ClientLoadProfile', 'Http', 'LoadType'])
+        self.httpClientMaxConnectionsAttempted = self.getValue(cfg, ['ClientLoadProfile', 'Http', 'MaxConnectionsAttempted'])
+        self.httpClientMaxOpenConnections = self.getValue(cfg, ['ClientLoadProfile', 'Http', 'MaxOpenConnections'])
+        self.sipClientLoadType = self.getValue(cfg, ['ClientLoadProfile', 'Sip', 'LoadType'])
+        self.sipClientMaxConnectionsAttempted = self.getValue(cfg, ['ClientLoadProfile', 'Sip', 'MaxConnectionsAttempted'])
+        self.sipClientMaxOpenConnections = self.getValue(cfg, ['ClientLoadProfile', 'Sip', 'MaxOpenConnections'])
         self.ifCountDevice = self.getValue(cfg, ['ifCount'])
         self.ifStackDevice = self.getValue(cfg, ['ifStack'])
         self.linkTypeDevice = self.getValue(cfg, ['LinkType'])
