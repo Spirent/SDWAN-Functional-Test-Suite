@@ -16,7 +16,7 @@ This archive contains the source code and other files for Testpack.
 
 ## Testbed information
 Before test Test execution, the following configuraiton need modified.
-1. Physical lab configuration: This is a single template file to be supplied by the user that contains the complete details of their lab equipment, along with how they are interconnected into testbeds. See for exmaple testbeds_lab/sd-wan.yaml, at least, the STC Chassis IP(ipv4 under Stc1, Stc2, Stc3,Stc4,Stc5), Lab Sever IP(ipv4 under spirent_lab_server_1) , SNE IP(ipv4 under sne1) need modified by users. Other STC configuration only need modified if user has any different values or add any new configurations.
+1. Physical lab configuration: This is a single template file to be supplied by the user that contains the complete details of their lab equipment, along with how they are interconnected into testbeds. See for example testbeds_lab/sd-wan.yaml, at least, the STC Chassis IP(ipv4 under Stc1, Stc2, Stc3,Stc4,Stc5), Lab Sever IP(ipv4 under spirent_lab_server_1) , SNE IP(ipv4 under sne1) need modified by users. Other STC configuration only need modified if user has any different values or add any new configurations.
 2. A mapping file that maps individual test cases to specific physical testbeds identified in the lab configuration file - see for example testbeds_lab/sd-wan_testbedMap.py,which aleady hasall the default mappings. User need to modify this mapping file when a new case is added or change the existing mapping.
 
 ## Test execution
