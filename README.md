@@ -19,14 +19,14 @@ TestPack is designed to run on a Linux environment and based on python.
     sudo apt-get install build-essential python3-venv
     sudo apt-get install python3-dev
   ```
-2.Download testpack from Git
+2. Download testpack from Git
   Example 
   ```
     git clone https://github.com/SpirentOrion/SDWAN-Testpack.git
     cd SDWAN-Testpack
   ```
 3. Run `make` from repository root. This will install the Python virtual environment in pkg/atsenv, along with required packages such as pyats, unicon, genie, jinja2, stcrestclient, and robotframework.
-  Example
+   Example
   ```
     make
   ```
@@ -39,17 +39,17 @@ TestPack is designed to run on a Linux environment and based on python.
 
 ## Testbed information
 Before test Test execution, you need to know the following information.
-1. Read the test case specification. In this specification, there is a Test Case Id for each test case, see the example for sd-wan testpack: `testpacks/sd-wan/Spirent SD-WAN TestPack Specification.pdf`.
+1. Read the test case specification. In this specification, there is a Test Case Id for each test case, see the example for sd-wan testpack: [testpacks/sd-wan/Spirent SD-WAN TestPack Specification.pdf](https://github.com/SpirentOrion/SDWAN-Testpack/blob/master/testpacks/sd-wan/Spirent%20SD-WAN%20TestPack%20Specification.pdf).
 2. A mapping file that maps individual test cases to specific physical testbeds identified in the lab configuration file. Find the testbed template according to the Test case Id from the testbedMap.py, see the example for sd-wan testpack: `testbeds_lab/sd-wan_testbedMap.py`.
 3. You need to modify the physical testbeds informaiton in the lab configuraion.This is a single template file to be supplied by the user that contains the complete details of their lab equipments. See for example `testbeds_lab/sd-wan.yaml`, at least, some ipv4 addresses (ipv4 under Stc1, Stc2, Stc3,Stc4,Stc5,spirent_lab_server_1,sne1) need modified. Other STC configuration only need modified if you requires the different values.
-4. For sd-wan, there is no DUT configuration in the test script, you have to configure the DUT manually before running the test.The Gateway of EmulatedDevices should be the same with DUT interface Ip.
+4. For sd-wan, there is no DUT configuration in the test script, you have to configure the DUT manually before running the test.The Gateway of EmulatedDevices are the same as with DUT interface Ip.
 
   Example:
   ```
     Step1. To run the test case SD-WAN_Path_Selection_Application_Aware_Steering, in testpacks/sd-wan/Spirent SD-WAN TestPack   Specification.pdf, find its Test Case Id is sd-wan.path_selection.002.
     Step2. Find sd-wan.path_selection.002's physical testbed is 3Stc1Dut_Type01_Testbed02 in testbeds_lab/sd-wan_testbedMap.py.
-    Step3. In testbeds_lab/sd-wan.yaml, find 3Stc1Dut_Type01_Testbed02 uses chassis_1,chassis_2,chassis_3,ls_1. You need modify the ipv4  under stc1,stc2 , stc3, spirent_lab_server_1, and slot/port number under chassis_1, chassis_2 and chassis_2.
-    Step4. Check the Gateway of EmulatedDevices under 3Stc1Dut_Type01_Testbed02, which should be the same with the interfaces' ip on DUT. If they are different, modify the Gateway or change the DUT interface Ip.
+    Step3. In testbeds_lab/sd-wan.yaml, find 3Stc1Dut_Type01_Testbed02 uses chassis_1,chassis_2,chassis_3,ls_1. You need modify the ipv4  under stc1,stc2 , stc3, spirent_lab_server_1, and slot/port number under chassis_1, chassis_2 and chassis_3.
+    Step4. Check the Gateway of EmulatedDevices under 3Stc1Dut_Type01_Testbed02, which should be the same as the interfaces' ip on DUT. If they are different, modify the Gateway or change the DUT interface Ip.
   ```
 
 ## Test execution
@@ -83,5 +83,7 @@ Every testcase must have a unique, immutable identifier. This will identify the 
 Every test case should be accompanied by metadata, see example `test_cases/sd-wan/metadata/sd-wan.path_selection.001.yaml`.
 
 Each testpack has a specification to describe the test cases. See example:`testpacks/sd-wan/"Spirent SD-WAN TestPack Specification.pdf"`.
+
 2. Test scripts are organized into testpacks folders, see example: `testpacks/sd-wan/`. They are python based.
+
 3. `testbed_templates` folder is for the logic testbed template. See example: `testbed_templates/sd-wan/3Stc1Dut_Type01.yaml`, which get the information from the Physical lab configuration and generate the final configuraiotn file used by the test script.
