@@ -11,15 +11,21 @@ This archive contains the source code and other files for Testpack.
 
 ## Installation
 TestPack is designed to run on a Linux environment and based on python.
-1. Requirement: Make sure Python3.4 or higher/make/git are installed on your system, On Debian/Ubuntu systems, build-essential, python3-venv and python3-dev also need installed.  
+1. Requirement: Make sure Python3.4 or higher/make/git are installed on your system, On Debian/Ubuntu systems, build-essential (installs make), python3-venv, python3-dev, and curl also need installed.  
 
     Example how to install these softwares on Ubuntu 18.04, which already includes the Python3.6 and git.
     ```
-    sudo apt-get install make
     sudo apt-get install build-essential python3-venv
     sudo apt-get install python3-dev
+    sudo apt-get install curl
     ```
-2. Download testpack from Git   
+2. Download testpack from Git
+
+    You might need to install Git if not already installed.
+    ```
+    sudo apt install git
+    ```
+     
     Example：
     ```
     git clone https://github.com/SpirentOrion/SDWAN-Testpack.git
@@ -30,7 +36,7 @@ TestPack is designed to run on a Linux environment and based on python.
     ```
     make  
     ```  
-    
+
     If there is anything wrong with 'make', after solving the errors, run `make clean` to clean up the previous environment and `make` again.  
     ```
     make clean
@@ -61,14 +67,14 @@ Before test Test execution, you need to know the following information.
     ```
     export PYTHONPATH=/home/spirent/SDWAN-Testpack
     ```
-    
+
 3. Run tests from the root folder. Tests can be run using robot command, as follows:
     ```
     robot -v testbed_config:testbeds_lab/sd-wan.yaml -V testbeds_lab/sd-wan_testbedMap.py -t sd-wan.path_selection.002 -d testrun  test_cases/sd-wan/core.robot
     ```  
 
     The result is under folder `testrun`, which includes the Robot report files , STC and test scripts logs.
-  
+
     Refer to Robot framework user guide for complete syntax of robot command, including pattern matching for selecting testcases to be executed based on testcase ids or tags.
 
     We support -v validate:1 argument for just validating testbed files without running tests.
@@ -80,7 +86,7 @@ Before test Test execution, you need to know the following information.
 We use Robot automation framework as our test runner. Test cases are defined in robot files that accompany Python test scripts. These robot files, such as test_cases/sd-wan/core.robot are the wrappers for Robot framework. They seamlessly call test functions in Python scripts. A set of related test cases can be defined in a single .robot script.  
 
     Every testcase must have a unique, immutable identifier. This will identify the testcase in the metadata file and in the Robot file. Testcase ids will follow the format **\<testpack>.\<area>.###**, that is the unique testpack name along with a 3 digit testcase number relative to a testpack. For example, `sd-wan.path_selection.001`.
- 
+
     Every test case should be accompanied by metadata, see example `test_cases/sd-wan/metadata/sd-wan.path_selection.001.yaml`.
 
     Each testpack has a specification to describe the test cases. See example:`testpacks/sd-wan/"Spirent SD-WAN TestPack Specification.pdf"`.
