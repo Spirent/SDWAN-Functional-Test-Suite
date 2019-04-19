@@ -25,7 +25,6 @@ TestPack is designed to run on a Linux environment and based on python.
     ```
     sudo apt install git
     ```
-     
     Example：
     ```
     git clone https://github.com/SpirentOrion/SDWAN-Testpack.git
