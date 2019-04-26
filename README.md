@@ -73,7 +73,7 @@ Before test Test execution, you need to know the following information.
     robot -v testbed_config:testbeds_lab/sd-wan.yaml -V testbeds_lab/sd-wan_testbedMap.py -t sd-wan.path_selection.002 -d testrun  test_cases/sd-wan/core.robot
     ```  
 
-    Refer to section[Test result](https://github.com/SpirentOrion/SDWAN-Testpack#Test-result) to check result.
+    Refer to section [Test result](https://github.com/SpirentOrion/SDWAN-Testpack#Test-result) to check test result.
 
     Refer to Robot framework user guide for complete syntax of robot command, including pattern matching for selecting testcases to be executed based on testcase ids or tags.
 
@@ -92,11 +92,11 @@ Output files are configured using robot command line options. In section:[Test e
     firefox report.html
     ```
 
-2. test script logs
-   `test.log.json` under `testrun/sd-wan.resiliency_link.002` contains the test scriopt execution logs.
+2. test script logs:  
+   `test.log.json` under `testrun/sd-wan.resiliency_link.002` contains the test scriopt execution logs.  
 
-3. STC logs
-   There are STC BLL/IL logs and STC configuraiton under `testrun/sd-wan.resiliency_link.002`.
+3. STC logs:  
+   There are STC BLL/IL logs and STC configuraiton under `testrun/sd-wan.resiliency_link.002`.  
 
 ## Repository Folders
 1. Testcases are organized into test_cases folders, see example: `test_cases/sd-wan`.
