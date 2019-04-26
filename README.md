@@ -83,11 +83,12 @@ Before test Test execution, you need to know the following information.
     ```
 ## Test result
 Output files are configured using robot command line options. In section:[Test execution](https://github.com/SpirentOrion/SDWAN-Testpack#Test-execution), `-d testrun` specifies the result directory is `testrun`. There are robot report files, STC and test script logs.
-1. Robot report files: `report.html`, `log.html` and `output.xml` files are typically generated.
-   `report.html` contains an overview of the test execution results in HTML format.
-   `log.html` contains details about the executed test cases in HTML format.
-   `output.xml` contains the test execution results in machine readable XML format.
-   You can use any brower to open the result.
+1. Robot report files:   
+   `report.html`, `log.html` and `output.xml` files are typically generated.  
+   `report.html` contains an overview of the test execution results in HTML format.  
+   `log.html` contains details about the executed test cases in HTML format.  
+   `output.xml` contains the test execution results in machine readable XML format.  
+   You can use any brower to open the result.  
     ```
     firefox report.html
     ```
