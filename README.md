@@ -7,6 +7,7 @@ This archive contains the source code and other files for Testpack.
 - [Installation](https://github.com/SpirentOrion/SDWAN-Testpack#Installation)
 - [Testbed information](https://github.com/SpirentOrion/SDWAN-Testpack#Testbed-information)
 - [Test execution](https://github.com/SpirentOrion/SDWAN-Testpack#Test-execution)
+- [Test result](https://github.com/SpirentOrion/SDWAN-Testpack#Test-result)
 - [Repository Files](https://github.com/SpirentOrion/SDWAN-Testpack#Repository-Folders)
 
 ## Installation
@@ -72,7 +73,7 @@ Before test Test execution, you need to know the following information.
     robot -v testbed_config:testbeds_lab/sd-wan.yaml -V testbeds_lab/sd-wan_testbedMap.py -t sd-wan.path_selection.002 -d testrun  test_cases/sd-wan/core.robot
     ```  
 
-    The result is under folder `testrun`, which includes the Robot report files , STC and test scripts logs.
+    Refer to section [Test result](https://github.com/SpirentOrion/SDWAN-Testpack#Test-result) to check test result.
 
     Refer to Robot framework user guide for complete syntax of robot command, including pattern matching for selecting testcases to be executed based on testcase ids or tags.
 
@@ -80,6 +81,24 @@ Before test Test execution, you need to know the following information.
     ```
     robot -v testbed_config:testbeds_lab/sd-wan.yaml -V testbeds_lab/sd-wan_testbedMap.py -t sd-wan.path_selection.002 -v validate:1 -d testrun test_cases/sd-wan/core.robot
     ```
+## Test result
+Output files are configured using robot command line options. In section:[Test execution](https://github.com/SpirentOrion/SDWAN-Testpack#Test-execution), `-d testrun` specifies the result directory is `testrun`. There are robot report files, STC and test script logs.
+1. Robot report files:   
+   `report.html`, `log.html` and `output.xml` files are typically generated.  
+   `report.html` contains an overview of the test execution results in HTML format.  
+   `log.html` contains details about the executed test cases in HTML format.  
+   `output.xml` contains the test execution results in XML format.  
+   You can use any brower to open the result.  
+    ```
+    firefox report.html
+    ```
+
+2. test script logs:  
+   `test.log.json` under `testrun/sd-wan.resiliency_link.002` contains the test scriopt execution logs.  
+
+3. STC logs:  
+   There are STC BLL/IL logs and STC configuraiton under `testrun/sd-wan.resiliency_link.002`.  
+
 ## Repository Folders
 1. Testcases are organized into test_cases folders, see example: `test_cases/sd-wan`.
 We use Robot automation framework as our test runner. Test cases are defined in robot files that accompany Python test scripts. These robot files, such as test_cases/sd-wan/core.robot are the wrappers for Robot framework. They seamlessly call test functions in Python scripts. A set of related test cases can be defined in a single .robot script.  
