@@ -1,0 +1,461 @@
+##############
+# LabServers #
+##############
+spirent_lab_server_1:
+  ipv4: &ls_1 10.61.67.239
+  ipv4: &ls_2 10.109.113.239
+
+#############
+#  Testers  #
+#############
+Stc1:
+  ipv4: &chassis_1 10.61.35.48
+Stc2:
+  ipv4: &chassis_2 10.61.35.50
+Stc3:
+  ipv4: &chassis_3 10.61.35.49
+Stc4:
+  ipv4: &chassis_4 10.109.123.242
+Stc5:
+  ipv4: &chassis_5 10.109.113.167
+
+############
+#   SNEs   #
+############
+sne1: &sne1
+  ipv4: 10.61.35.6
+
+############
+# Testbeds #
+############
+#########2Tester_Type01##########
+#                               #
+#    +-------+     +-------+    #
+#    |TESTER1+-----+TESTER2|    #
+#    +-------+     +-------+    #
+#                               #
+#################################
+2Tester_Type01_Testbed01:
+  lab_server: *ls_1
+  stc:
+    port1:
+      chassis: *chassis_1
+      slot: 1
+      port: 1
+      stc_config:
+        phy:
+        speed:
+        autoNegotiation:
+    port2:
+      chassis: *chassis_2
+      slot: 1
+      port: 1
+      stc_config:
+        phy:
+        speed:
+        autoNegotiation:
+
+################3Stc1Dut_Type01################
+#                                             #
+#                         +------------+      #
+#               +---------+MplsEndPoint|      #
+#               |         +------------+      #
+#  +------+   +-+--+                          #
+#  |Client+---+DUT1|                          #
+#  +------+   +-+--+                          #
+#               |         +----------------+  #
+#               +---------+InternetEndPoint|  #
+#                         +----------------+  #
+#                                             #
+###############################################
+3Stc1Dut_Type01_Testbed01:
+  stc_config:
+    ifCount: '1 1'
+    ifStack: 'Ipv4If EthIIIf'
+    LinkType: 'L3 Forwarding Link'
+    LoadUnit: 'MEGABITS_PER_SECOND'
+    Load: '1'
+  lab_server: *ls_1
+  stc:
+    client_port:
+      chassis: *chassis_1
+      slot: 1
+      port: 1
+      stc_config:
+        Name: Client-Port
+        GeneratorConfig:
+          SchedulingMode: RATE_BASED
+          DurationMode: SECONDS
+          Duration : 60
+        EmulatedDevice:
+          EmulatedDevice1:
+            Name: Client-Head
+            Ipv4If:
+              Address: '150.0.0.1'
+              Gateway: '150.0.0.2'
+          EmulatedDevice2:
+            Name: Client-Device1
+            DeviceCount: '100'
+            Ipv4If:
+              Address: '101.0.0.1'
+          EmulatedDevice3:
+            Name: Client-Device2
+            DeviceCount: '100'
+            Ipv4If:
+              Address: '102.0.0.1'
+        StreamBlock:
+          StreamBlock1:
+            Name: TCP01
+            FrameLengthMode: 'iMix'
+            FrameLengthDistribution:
+              Name: 'JMIX Upstream'
+            FrameConfig: '<frame><config><pdus><pdu name="ipv4_001" pdu="ipv4:IPv4"></pdu><pdu name="proto1" pdu="tcp:Tcp"><destPort override="true" >80</destPort></pdu></pdus></config></frame>'
+          StreamBlock2:
+            Name: TCP02
+            FrameLengthMode: 'iMix'
+            FrameLengthDistribution:
+              Name: 'JMIX Upstream'
+            FrameConfig: '<frame><config><pdus><pdu name="ipv4_002" pdu="ipv4:IPv4"></pdu><pdu name="proto2" pdu="tcp:Tcp"><destPort override="true" >80</destPort></pdu></pdus></config></frame>'
+          StreamBlock3:
+            Name: UDP01
+            FrameLengthMode: 'iMix'
+            FrameLengthDistribution:
+              Name: 'JMIX Upstream'
+            FrameConfig: '<frame><config><pdus><pdu name="ipv4_003" pdu="ipv4:IPv4"></pdu><pdu name="proto3" pdu="udp:Udp"><destPort override="true" >5060</destPort></pdu></pdus></config></frame>'
+          StreamBlock4:
+            Name: UDP02
+            FrameLengthMode: 'iMix'
+            FrameLengthDistribution:
+              Name: 'JMIX Upstream'
+            FrameConfig: '<frame><config><pdus><pdu name="ipv4_004" pdu="ipv4:IPv4"></pdu><pdu name="proto4" pdu="udp:Udp"><destPort override="true" >5060</destPort></pdu></pdus></config></frame>'
+          StreamBlock5:
+            Name: UDP03
+            FixedFrameLength: '512'
+            FrameConfig: '<frame><config><pdus><pdu name="ipv4_004" pdu="ipv4:IPv4"></pdu><pdu name="proto4" pdu="udp:Udp"><destPort override="true" >50050</destPort></pdu></pdus></config></frame>'
+            RangeModifier: {'RepeatCount': '0', 'RecycleCount': '25', 'StepValue': '2', 'Data': '50050', 'OffsetReference': 'proto4.destPort', 'Mask': '65535'}
+          StreamBlock6:
+            Name: UDP04
+            FixedFrameLength: '512'
+            FrameConfig: '<frame><config><pdus><pdu name="ipv4_004" pdu="ipv4:IPv4"></pdu><pdu name="proto4" pdu="udp:Udp"><destPort override="true" >50050</destPort></pdu></pdus></config></frame>'
+            RangeModifier: {'RepeatCount': '0', 'RecycleCount': '25', 'StepValue': '2', 'Data': '50050', 'OffsetReference': 'proto4.destPort', 'Mask': '65535'}
+          StreamBlock7:
+            Name: UDP05
+            FrameLengthMode: 'iMix'
+            FrameLengthDistribution:
+              Name: 'JMIX Upstream'
+            FrameConfig: '<frame><config><pdus><pdu name="ipv4_004" pdu="ipv4:IPv4"></pdu><pdu name="proto4" pdu="udp:Udp"><destPort override="true" >50051</destPort></pdu></pdus></config></frame>'
+            RangeModifier: {'RepeatCount': '0', 'RecycleCount': '25', 'StepValue': '2', 'Data': '50051', 'OffsetReference': 'proto4.destPort', 'Mask': '65535'}
+          StreamBlock8:
+            Name: UDP06
+            FrameLengthMode: 'iMix'
+            FrameLengthDistribution:
+              Name: 'JMIX Upstream'
+            FrameConfig: '<frame><config><pdus><pdu name="ipv4_004" pdu="ipv4:IPv4"></pdu><pdu name="proto4" pdu="udp:Udp"><destPort override="true" >50051</destPort></pdu></pdus></config></frame>'
+            RangeModifier: {'RepeatCount': '0', 'RecycleCount': '25', 'StepValue': '2', 'Data': '50051', 'OffsetReference': 'proto4.destPort', 'Mask': '65535'}
+    mpls_port:
+      chassis: *chassis_2
+      slot: 1
+      port: 1
+      stc_config:
+        phy:
+        speed:
+        autoNegotiation:
+        Name: Mpls-Port
+        EmulatedDevice:
+          EmulatedDevice1:
+            Name: Mpls-Head
+            Ipv4If:
+              Address: '150.0.1.1'
+              Gateway: '150.0.1.2'
+          EmulatedDevice2:
+            Name: Mpls-Device1
+            DeviceCount: '200'
+            Ipv4If:
+              Address: '200.0.0.1'
+    inet_port:
+      chassis: *chassis_3
+      slot: 1
+      port: 1
+      stc_config:
+        phy:
+        speed:
+        autoNegotiation:
+        Name: Inet-Port
+        EmulatedDevice:
+          EmulatedDevice1:
+            Name: Internet-Head
+            Ipv4If:
+              Address: '150.0.2.1'
+              PrefixLength: '24'
+              Gateway: '150.0.2.2'
+          EmulatedDevice2:
+            Name: Internet-Device1
+            DeviceCount: '200'
+            Ipv4If:
+              Address: '200.0.0.1'
+3Stc1Dut_Type01_Testbed02:
+  stc_config:
+    ifStack: 'Ipv4If EthIIIf'
+    ifCount: '1 1'
+    LinkType: 'L3 Forwarding Link'
+    ClientLoadProfile:
+      Http:
+        LoadType: CONNECTIONS_PER_TIME_UNIT
+        MaxConnectionsAttempted: 1500
+        MaxOpenConnections: 20
+      Sip:
+        MaxConnectionsAttempted: 200
+        LoadType: CONNECTIONS_PER_TIME_UNIT
+        MaxOpenConnections: 10
+  lab_server: *ls_1
+  stc:
+    client_port:
+      chassis: *chassis_1
+      slot: 1
+      port: 1
+      stc_config:
+        Name: Client-Port
+        Phy:
+        Speed:
+        AutoNegotiation:
+        EmulatedDevice:
+          EmulatedDevice1:
+              Name: Client-Head
+              Ipv4If:
+                Address: 150.0.0.1
+                Prefixlength: 24
+                Gateway: 150.0.0.2
+          EmulatedDevice2:
+              Name: Client-Device1
+              DeviceCount: 10
+              Ipv4If:
+                Address: 101.0.0.1
+                Prefixlength: 24
+                Gateway: 150.0.0.2
+              Sip:
+                UaNumFormat: 'Caller_%08u'          
+    mpls_port:
+      chassis: *chassis_2
+      slot: 1
+      port: 1
+      stc_config:
+        Name: MPLS-Port
+        Phy:
+        Speed:
+        AutoNegotiation:
+        EmulatedDevice:
+          EmulatedDevice1:
+              Name: MPLS-Head
+              Ipv4If:
+                Address: 150.0.1.1
+                Prefixlength: 24
+                Gateway: 150.0.1.2
+          EmulatedDevice2:
+              Name: MPLS-Device1
+              DeviceCount: 20
+              Ipv4If:
+                Address: 200.0.0.1
+                Prefixlength: 24
+                Gateway: 150.0.1.2
+              Sip:
+                UaNumFormat: 'Callee_%06u'             
+    inet_port:
+      chassis: *chassis_3
+      slot: 1
+      port: 1
+      stc_config:
+        Name: Internet-Port
+        Phy:
+        Speed:
+        AutoNegotiation:
+        EmulatedDevice:
+          EmulatedDevice1:
+              Name: Internet-Head
+              Ipv4If:
+                Address: 150.0.2.1
+                Prefixlength: 24
+                Gateway: 150.0.2.2
+          EmulatedDevice2:
+              Name: Internet-Device1
+              DeviceCount: 20
+              Ipv4If:
+                Address: 200.0.0.1
+                Prefixlength: 24
+                Gateway: 150.0.2.2
+###################3Stc1Sne1Dut_Type01##################
+#                                                      #
+#                         +------------+               #
+#               +---------+MplsEndPoint|               #
+#               |         +------------+               #
+#  +------+   +-+--+                                   #
+#  |Client+---+DUT1|                                   #
+#  +------+   +-+--+                                   #
+#               |      +----+      +----------------+  #
+#               +------+SNE1+------+InternetEndPoint|  #
+#                      +----+      +----------------+  #
+#                                                      #
+########################################################
+3Stc1Sne1Dut_Type01_Testbed01:
+  stc_config:
+    ManageProfiles:
+      HttpProfile1:
+        ProfileName: Profile1
+        LoadType: CONNECTIONS_PER_TIME_UNIT
+        MaxConnectionsAttempted: 1500
+        MaxOpenConnections: 1
+  lab_server: *ls_1
+  stc:
+    client_port:
+      chassis: *chassis_1
+      slot: 1
+      port: 1
+      stc_config:
+        phy:
+        speed:
+        autoNegotiation:
+    mpls_port:
+      chassis: *chassis_2
+      slot: 1
+      port: 1
+      stc_config:
+        phy:
+        speed:
+        autoNegotiation:
+    inet_port:
+      chassis: *chassis_3
+      slot: 1
+      port: 3
+      stc_config:
+        phy:
+        speed:
+        autoNegotiation:
+  sne1:
+    <<: *sne1
+    sne1_to_dut1:
+      port: "GigabitEthernet0/1"
+    sne1_to_stc_if3:
+      port: "GigabitEthernet0/2"
+
+#####################3Stc1Sne2Dut_Type01######################
+#                                                            #
+#                         +------------+                     #
+#               +---------+MplsEndPoint|                     #
+#               |         +------------+                     #
+#  +------+   +-+--+                                         #
+#  |Client+---+DUT1|                                         #
+#  +------+   +-+--+                                         #
+#               |      +----+   +----+   +----------------+  #
+#               +------+SNE1+---+DUT2+---+InternetEndPoint|  #
+#                      +----+   +----+   +----------------+  #
+#                                                            #
+##############################################################
+3Stc1Sne2Dut_Type01_Testbed01:
+  stc_config:
+    ifCount: '1 1'
+    ifStack: 'Ipv4If EthIIIf'
+    LinkType: 'L3 Forwarding Link'
+    FixedFrameLength: '512'
+    waitTimeAfterDisableSne : 30
+    waitTimeAfterBreakLink : 30
+    waitIntervalAfterBreakLink : 5
+    waitTimeAfterRecoverLink : 30
+    waitIntervalAfterRecoverLink : 5
+  lab_server: *ls_2
+  sne1:
+    <<: *sne1
+    sne1_to_dut1:
+      port: "4"
+    sne1_to_dut2:
+      port: "5"
+    custom:
+      sne_config:
+        Disruptor:
+          Name: 'Delay Packet'
+          PacketDelayDisruptor:
+            Delay: 1.00
+            Jitter: 0
+            Duration: 5000.00
+            MaxThroughput: 10000
+        Corruptor:
+          Name: 'DropPackets'
+          PacketDropCorruptor:
+            PacketDropCount: 100
+            PerPacketCount: 100
+            Duration: 100.00
+  stc:
+    client_port:
+      chassis: *chassis_1
+      slot: 1
+      port: 1
+      stc_config:
+        Name: Client-Port
+        GeneratorConfig:
+          LoadUnit: BITS_PER_SECOND
+          LoadMode: FIXED
+          FixedLoad: 4000000
+        EmulatedDevice:  
+          EmulatedDevice1:
+            Name: Client-Head
+            Ipv4If:
+              Address: '150.0.0.1'
+              Gateway: '150.0.0.2'
+          EmulatedDevice2:
+            Name: Client-Device1
+            DeviceCount: '100'
+            Ipv4If:
+              Address: '101.0.0.1'
+          EmulatedDevice3:
+            Name: Client-Device2
+            DeviceCount: '100'
+            Ipv4If:
+              Address: '102.0.0.1'
+        StreamBlock:
+          StreamBlock1:
+            Name: TCP01
+            FrameConfig: '<frame><config><pdus><pdu name="ipv4_001" pdu="ipv4:IPv4"></pdu><pdu name="proto1" pdu="tcp:Tcp"><destPort override="true" >80</destPort></pdu></pdus></config></frame>'
+          StreamBlock2:
+            Name: TCP02
+            FrameConfig: '<frame><config><pdus><pdu name="ipv4_002" pdu="ipv4:IPv4"></pdu><pdu name="proto2" pdu="tcp:Tcp"><destPort override="true" >80</destPort></pdu></pdus></config></frame>'
+          StreamBlock3:
+            Name: UDP01
+            FrameConfig: '<frame><config><pdus><pdu name="ipv4_003" pdu="ipv4:IPv4"></pdu><pdu name="proto3" pdu="udp:Udp"><destPort override="true" >50050</destPort></pdu></pdus></config></frame>'
+            RangeModifier: {'RepeatCount': '0', 'RecycleCount': '25', 'StepValue': '2', 'Data': '50050', 'OffsetReference': 'proto3.destPort', 'Mask': '65535'}
+          StreamBlock4:
+            Name: UDP02
+            FrameConfig: '<frame><config><pdus><pdu name="ipv4_004" pdu="ipv4:IPv4"></pdu><pdu name="proto4" pdu="udp:Udp"><destPort override="true" >50050</destPort></pdu></pdus></config></frame>'
+            RangeModifier: {'RepeatCount': '0', 'RecycleCount': '25', 'StepValue': '2', 'Data': '50050', 'OffsetReference': 'proto4.destPort', 'Mask': '65535'}
+    mpls_port:
+      chassis: *chassis_2
+      slot: 1
+      port: 1
+      stc_config:
+        Name: Mpls-Port
+        EmulatedDevice:  
+          EmulatedDevice1:
+            Name: Mpls-Head
+            Ipv4If:
+              Address: '150.0.1.1'
+              Gateway: '150.0.1.2'
+          EmulatedDevice2:
+            Name: Mpls-Device1
+            DeviceCount: '200'
+            Ipv4If:
+              Address: '200.0.0.1'
+    inet_port:
+      chassis: *chassis_3
+      slot: 1
+      port: 1
+      stc_config:
+        Name: Internet-Port
+        EmulatedDevice:  
+          EmulatedDevice1:
+            Name: Internet-Head
+            Ipv4If:
+              Address: '150.0.2.1'
+              PrefixLength: '24'
+              Gateway: '150.0.2.2'
+          EmulatedDevice2:
+            Name: Internet-Device1
+            DeviceCount: '200'
+            Ipv4If:
+              Address: '200.0.0.1'

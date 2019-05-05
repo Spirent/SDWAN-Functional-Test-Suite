@@ -1,0 +1,26 @@
+testcase:
+  id: sample.basic.001
+  name: 'Router Basic Forwarding'
+  description: 'Simple 2-port Traffic Test'
+  objective: 'Test basic router forwarding'
+  run_info:
+    equipment:
+        - type: pga
+          count: 2
+        - type: router
+          count: 1
+    duration: 300
+    timeout: 600
+    testbed: common/2Stc1Router_Type01.yaml
+    script_module: testpacks.sample.basic_forwarding
+    script_class: basic_forwarding
+    procedure: '1. Apply configuration 2. Check port link is up 3. Start capture on port 2 …'
+    environment: '2 ports connected through router, port1 transmitting, port2 receiving port'
+    initial_config: 'One raw streamblock with encapsulation EthII/FCoE ...'
+    expected_results: 'Total number of captured packets=5067568, no frame loss'
+  verified_defects: ['3033', '4635']
+  owner:
+    name: 'Brooks Hickman'
+  test_type: [acceptance]
+  dut_target: [router]
+  test_suites: [acceptance]

@@ -1,0 +1,59 @@
+<MAP Name = "Default Map___________________________" Description = "" MapGUID = "{6A2C7828-6F49-477C-87B8-24E0E826AE7F}">
+	<Objects Count = "6">
+		<Object1 Type = "NetworkStartPoint" SubType = "" Name = "port1" GUID = "{5B60CDD6-B1C6-4BFC-A81B-897836E54FA5}">
+			<EntityConfigData>
+				<Port>4</Port>
+				<FCSEnabled>False</FCSEnabled>
+			</EntityConfigData>
+		</Object1>
+		<Object2 Type = "NetworkStartPoint" SubType = "" Name = "port2" GUID = "{F102A81D-4A1E-4081-BDC8-F1AD9AD1A6AE}">
+			<EntityConfigData>
+				<Port>5</Port>
+				<FCSEnabled>False</FCSEnabled>
+			</EntityConfigData>
+		</Object2>
+		<Object3 Type = "Disruptor" SubType = "PacketDelayDisruptor" Name = "Delay Packet" GUID = "{D05A091A-5675-4672-AD78-D7E962C8A57E}">
+			<EntityConfigData>
+				<ConfigurationType>dpdctConstant</ConfigurationType>
+				<Delay>1.00</Delay>
+				<Jitter>0</Jitter>
+				<EnableTimeConstraints>False</EnableTimeConstraints>
+				<StartDelay>1000.00</StartDelay>
+				<Duration>5000.00</Duration>
+				<Enabled>True</Enabled>
+				<MaxThroughput>10000</MaxThroughput>
+			</EntityConfigData>
+		</Object3>
+		<Object4 Type = "Corruptor" SubType = "PacketDropCorruptor" Name = "DropPackets" GUID = "{D6F5E3D3-DCA6-46BE-983C-CE571433F7C3}">
+			<EntityConfigData>
+			
+				<ConfigurationType>pdtStandard</ConfigurationType>
+				<PacketDropCount>100</PacketDropCount>
+				<PerPacketCount>100</PerPacketCount>
+				<DropMethod>pdsmEvenly</DropMethod>
+				<EnableTimeConstraints>False</EnableTimeConstraints>
+				<StartDelay>50.00</StartDelay>
+				<Duration>100.00</Duration>
+				<Enabled>True</Enabled>
+			</EntityConfigData>
+		</Object4>
+		<Object5 Type = "NetworkEndPoint" SubType = "" Name = "port2" GUID = "{D6110AD9-5635-4023-8832-8EFA65D4D8F0}">
+			<EntityConfigData>
+				<Port>5</Port>
+				<FCSEnabled>False</FCSEnabled>
+			</EntityConfigData>
+		</Object5>
+		<Object6 Type = "NetworkEndPoint" SubType = "" Name = "port1" GUID = "{3AA93297-3527-461F-9616-E1B29FE63340}">
+			<EntityConfigData>
+				<Port>4</Port>
+				<FCSEnabled>False</FCSEnabled>
+			</EntityConfigData>
+		</Object6>
+	</Objects>
+	<Links Count = "4">
+	<Link1 Source = "{5B60CDD6-B1C6-4BFC-A81B-897836E54FA5}" Destination = "{D6F5E3D3-DCA6-46BE-983C-CE571433F7C3}"></Link1>
+	<Link2 Source = "{D6F5E3D3-DCA6-46BE-983C-CE571433F7C3}" Destination = "{D6110AD9-5635-4023-8832-8EFA65D4D8F0}"></Link2>
+	<Link3 Source = "{F102A81D-4A1E-4081-BDC8-F1AD9AD1A6AE}" Destination = "{D05A091A-5675-4672-AD78-D7E962C8A57E}"></Link3>
+	<Link4 Source = "{D05A091A-5675-4672-AD78-D7E962C8A57E}" Destination = "{3AA93297-3527-461F-9616-E1B29FE63340}"></Link4>
+	</Links>
+</MAP>

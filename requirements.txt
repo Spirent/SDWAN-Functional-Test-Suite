@@ -1,0 +1,8 @@
+# Required dependences for stcpyats
+#
+pyats
+unicon
+genie
+jinja2
+stcrestclient
+robotframework

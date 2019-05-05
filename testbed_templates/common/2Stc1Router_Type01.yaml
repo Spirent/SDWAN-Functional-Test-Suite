@@ -1,0 +1,70 @@
+testbed:
+  name: sampleTestbed
+  servers:
+    SpirentLab:
+      type: stc-lab-server
+      address: {{ lab_server }}
+devices:
+  stc-port1:
+    os: spirent
+    type: stc
+    connections: {}
+  stc-port2:
+    os: spirent
+    type: stc
+    connections: {}
+  {{ dut1.hostname }}:
+    alias: dut1
+    os: {{ dut1.os }}
+    type: {{ dut1.type }}
+    tacacs:
+{%- if dut1.login_prompt is defined %}
+      login_prompt: "{{ dut1.login_prompt }}"
+{%- endif %}
+{%- if dut1.password_prompt is defined %}
+      password_prompt: "{{ dut1.password_prompt }}"
+{%- endif %}
+      username: "{{ dut1.username }}"
+    passwords:
+      tacacs: {{ dut1.password }}
+{%- if dut1.enable is defined %}
+      enable: {{ dut1.enable }}
+{%- endif %}
+    connections:
+      defaults:
+        class: 'unicon.Unicon'
+      a:
+{%- if dut1.connections.protocol is defined %}
+        protocol: {{ dut1.connections.protocol }}
+{%- endif %}
+        ip: {{ dut1.connections.ipv4 }}
+topology:
+  stc-port1:
+    interfaces:
+      {{ stc.port1.slot }}/{{ stc.port1.port }}:
+        chassis: {{ stc.port1.chassis }}
+        link: stc_port1_to_dut1_port1
+        type: stc-port
+        stc_config: {{ stc.port1.stc_config }}
+        ipv4: {{ stc.port1.ipv4 }}
+        gateway: {{ stc.port1.gateway }}
+  stc-port2:
+    interfaces:
+      {{ stc.port2.slot }}/{{ stc.port2.port }}:
+        chassis: {{ stc.port2.chassis }}
+        link: stc_port2_to_dut1_port2
+        type: stc-port
+        stc_config: {{ stc.port2.stc_config }}
+        ipv4: {{ stc.port2.ipv4 }}
+        gateway: {{ stc.port2.gateway }}
+        bgp: {{ stc.port2.bgp }}
+  {{ dut1.hostname }}:
+    interfaces:
+      {{ dut1.dut1_to_stc_port1.port }}:
+        alias: port1
+        type: {{ dut1.dut1_to_stc_port1.type }}
+        link: stc_port1_to_dut1_port1
+      {{ dut1.dut1_to_stc_port2.port }}:
+        alias: port2
+        type: {{ dut1.dut1_to_stc_port2.type }}
+        link: stc_port2_to_dut1_port2
