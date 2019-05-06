@@ -70,7 +70,7 @@ Before test Test execution, you need to know the following information.
 
 3. Run tests from the root folder. Tests can be run using robot command, as follows:
     ```
-    robot -v testbed_config:testbeds_lab/sd-wan.yaml -V testbeds_lab/sd-wan_testbedMap.py -t sd-wan.path_selection.002 -d testrun  test_cases/sd-wan/core.robot
+    robot -v testbed_config:testbeds_lab/sd-wan.yaml -V testbeds_lab/sd-wan_testbedMap.py -t sd-wan.path_selection.002 -d testrun  robot/sd-wan/core.robot
     ```  
 
     Refer to section [Test result](https://github.com/SpirentOrion/SDWAN-Testpack#Test-result) to check test result.
@@ -79,7 +79,7 @@ Before test Test execution, you need to know the following information.
 
     We support -v validate:1 argument for just validating testbed files without running tests.
     ```
-    robot -v testbed_config:testbeds_lab/sd-wan.yaml -V testbeds_lab/sd-wan_testbedMap.py -t sd-wan.path_selection.002 -v validate:1 -d testrun test_cases/sd-wan/core.robot
+    robot -v testbed_config:testbeds_lab/sd-wan.yaml -V testbeds_lab/sd-wan_testbedMap.py -t sd-wan.path_selection.002 -v validate:1 -d testrun robot/sd-wan/core.robot
     ```
 ## Test result
 Output files are configured using robot command line options. In section:[Test execution](https://github.com/SpirentOrion/SDWAN-Testpack#Test-execution), `-d testrun` specifies the result directory is `testrun`. There are robot report files, STC and test script logs.
@@ -100,15 +100,15 @@ Output files are configured using robot command line options. In section:[Test e
    There are STC BLL/IL logs and STC configuraiton under `testrun/sd-wan.resiliency_link.002`.  
 
 ## Repository Folders
-1. Testcases are organized into test_cases folders, see example: `test_cases/sd-wan`.
-We use Robot automation framework as our test runner. Test cases are defined in robot files that accompany Python test scripts. These robot files, such as test_cases/sd-wan/core.robot are the wrappers for Robot framework. They seamlessly call test functions in Python scripts. A set of related test cases can be defined in a single .robot script.  
+1. Robot files are organized into robot folders, see example: `robot/sd-wan`.
+We use Robot automation framework as our test runner. Test cases are defined in robot files that accompany Python test scripts. These robot files, such as robot/sd-wan/core.robot are the wrappers for Robot framework. They seamlessly call test functions in Python scripts. A set of related test cases can be defined in a single .robot script.  
 
     Every testcase must have a unique, immutable identifier. This will identify the testcase in the metadata file and in the Robot file. Testcase ids will follow the format **\<testpack>.\<area>.###**, that is the unique testpack name along with a 3 digit testcase number relative to a testpack. For example, `sd-wan.path_selection.001`.
 
-    Every test case should be accompanied by metadata, see example `test_cases/sd-wan/metadata/sd-wan.path_selection.001.yaml`.
+2. Test scripts are organized into testpacks folders, see example: `testpacks/sd-wan/`. They are python based.  
 
-    Each testpack has a specification to describe the test cases. See example:`testpacks/sd-wan/"Spirent SD-WAN TestPack Specification.pdf"`.
+    Every test case should be accompanied by metadata, see example `testpacks/sd-wan/Path_Selection_Application_Aware_Steering.yaml`.
 
-2. Test scripts are organized into testpacks folders, see example: `testpacks/sd-wan/`. They are python based.
+    Each testpack has a specification to describe the test cases. See example:`testpacks/sd-wan/"Spirent SD-WAN TestPack Specification.pdf"`.  
 
 3. `testbed_templates` folder is for the logic testbed template. See example: `testbed_templates/sd-wan/3Stc1Dut_Type01.yaml`, which get the information from the Physical lab configuration and generate the final configuraiotn file used by the test script.
