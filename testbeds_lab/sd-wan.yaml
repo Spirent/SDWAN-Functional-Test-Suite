@@ -18,6 +18,8 @@ Stc4:
   ipv4: &chassis_4 10.109.123.242
 Stc5:
   ipv4: &chassis_5 10.109.113.167
+Stc6:
+  ipv4: &chassis_6 10.61.37.4
 
 ############
 #   SNEs   #
@@ -75,11 +77,11 @@ sne1: &sne1
     LinkType: 'L3 Forwarding Link'
     LoadUnit: 'MEGABITS_PER_SECOND'
     Load: '1'
-  lab_server: *ls_1
+  lab_server: *ls_2
   stc:
     client_port:
-      chassis: *chassis_1
-      slot: 1
+      chassis: *chassis_6
+      slot: 8
       port: 1
       stc_config:
         Name: Client-Port
@@ -153,9 +155,9 @@ sne1: &sne1
             FrameConfig: '<frame><config><pdus><pdu name="ipv4_004" pdu="ipv4:IPv4"></pdu><pdu name="proto4" pdu="udp:Udp"><destPort override="true" >50051</destPort></pdu></pdus></config></frame>'
             RangeModifier: {'RepeatCount': '0', 'RecycleCount': '25', 'StepValue': '2', 'Data': '50051', 'OffsetReference': 'proto4.destPort', 'Mask': '65535'}
     mpls_port:
-      chassis: *chassis_2
-      slot: 1
-      port: 1
+      chassis: *chassis_6
+      slot: 8
+      port: 2
       stc_config:
         phy:
         speed:
@@ -173,9 +175,9 @@ sne1: &sne1
             Ipv4If:
               Address: '200.0.0.1'
     inet_port:
-      chassis: *chassis_3
-      slot: 1
-      port: 1
+      chassis: *chassis_6
+      slot: 8
+      port: 3
       stc_config:
         phy:
         speed:
@@ -207,11 +209,11 @@ sne1: &sne1
         MaxConnectionsAttempted: 200
         LoadType: CONNECTIONS_PER_TIME_UNIT
         MaxOpenConnections: 10
-  lab_server: *ls_1
+  lab_server: *ls_2
   stc:
     client_port:
-      chassis: *chassis_1
-      slot: 1
+      chassis: *chassis_6
+      slot: 8
       port: 1
       stc_config:
         Name: Client-Port
@@ -235,9 +237,9 @@ sne1: &sne1
               Sip:
                 UaNumFormat: 'Caller_%08u'          
     mpls_port:
-      chassis: *chassis_2
-      slot: 1
-      port: 1
+      chassis: *chassis_6
+      slot: 8
+      port: 2
       stc_config:
         Name: MPLS-Port
         Phy:
@@ -260,9 +262,9 @@ sne1: &sne1
               Sip:
                 UaNumFormat: 'Callee_%06u'             
     inet_port:
-      chassis: *chassis_3
-      slot: 1
-      port: 1
+      chassis: *chassis_6
+      slot: 8
+      port: 3
       stc_config:
         Name: Internet-Port
         Phy:
