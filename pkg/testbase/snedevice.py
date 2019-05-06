@@ -68,6 +68,7 @@ class SneDevice():
             command = SNE_CLI_STOP + self._mapguid
             self._logger.info("===> SNE Stop command %s" % (command))
             self._executeCommand(command)
+            self._mapguid = None
 
     def start(self):
         #Start command
@@ -134,4 +135,4 @@ class SneDevice():
                 result = True
                      
         if result==False: 
-            raise RuntimeError("Commnand executed failed out=%s, err=%s" % (out_info, err))
+            raise RuntimeError("Commnand executed failed command=%s, out=%s, err=%s" % (command,out_info, err))

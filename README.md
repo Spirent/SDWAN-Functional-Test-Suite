@@ -12,7 +12,7 @@ This archive contains the source code and other files for Testpack.
 
 ## Installation
 TestPack is designed to run on a Linux environment and based on python.
-1. Requirement: Make sure Python3.4 or higher/make/git are installed on your system, On Debian/Ubuntu systems, build-essential (installs make), python3-venv, python3-dev, and curl also need installed.  
+1. Requirement: Make sure Python3.4 or higher/make/git are installed on your system, On Ubuntu systems, build-essential (installs make), python3-venv, python3-dev, and curl also need installed.  
 
     Example how to install these softwares on Ubuntu 18.04, which already includes the Python3.6 and git.
     ```

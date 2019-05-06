@@ -8,7 +8,7 @@ $(ATSENV_SUBDIR):
 	@echo "===> Creating python virtual env: $(ATSENV_SUBDIR)"
 	@python3 -m venv $(ATSENV_SUBDIR)
 	@curl -s https://bootstrap.pypa.io/get-pip.py -o - | $(ATSENV_SUBDIR)/bin/python > /dev/null
-	@$(ATSENV_SUBDIR)/bin/pip install -r requirements.txt > /dev/null
+	@$(ATSENV_SUBDIR)/bin/pip install --timeout 50 -r requirements.txt > /dev/null
 
 upgrade:
 	@echo "===> Installing available upgrades into $(ATSENV_SUBDIR)"
