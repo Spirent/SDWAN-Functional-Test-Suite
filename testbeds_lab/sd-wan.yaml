@@ -25,7 +25,7 @@ Stc6:
 #   SNEs   #
 ############
 sne1: &sne1
-  ipv4: 10.61.35.6
+  ipv4: 10.61.37.113
 
 ############
 # Testbeds #
@@ -366,9 +366,9 @@ sne1: &sne1
   sne1:
     <<: *sne1
     sne1_to_dut1:
-      port: "4"
+      port: "8"
     sne1_to_dut2:
-      port: "5"
+      port: "9"
     custom:
       sne_config:
         Disruptor:
