@@ -49,7 +49,7 @@ Before test Test execution, you need to know the following information.
 
 2. A mapping file is provided that maps individual test cases to specific topology within the physical testbed configuration file. Find the appropriate physical testbed section that maps to the Test case Id from the mapping file `testbeds_lab/sd-wan_testbedMap.py`.
 
-3. Next you will need to modify the physical testbed information within your lab. This is a single template file to be supplied by the user that contains the complete details of their lab equipments. See for example `testbeds_lab/sd-wan.yaml`. Several other STC configuration paramaters are also exposed if you need to override the defaults.
+3. Next you will need to modify the physical testbed information within your lab. This is a single configuration file to be supplied by the user that contains the complete details of their lab equipments. See for example `testbeds_lab/sd-wan.yaml`. Several other STC configuration paramaters are also exposed if you need to override the defaults.
 
 4. For SD-WAN scripts there is no DUT configuration in the test script. You have to configure the DUT manually before running the test. The Gateway of EmulatedDevices are the same as with DUT interface IP.
 
@@ -127,3 +127,5 @@ Robot automation framework is used as our test runner. Test cases are defined in
     Each testpack has a specification to describe the test cases. See example:`testpacks/sd-wan/"Spirent SD-WAN TestPack Specification.pdf"`.  
 
 3. `testbed_templates` folder is for the logical testbed template. See example: `testbed_templates/sd-wan/3Stc1Dut_Type01.yaml`, which get the information from the Physical lab configuration and generate the final configuration file used by the test script.
+
+4. `testbeds_lab` folder is used for the physical configuration and the mapping file. See example: `testbeds_lab/sd-wan_testbedMap.py`, which defines the mapping for each test case id to section in physical configuration file `testbeds_lab/sd-wan.yaml`
