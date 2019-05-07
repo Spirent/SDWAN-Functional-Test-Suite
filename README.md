@@ -1,7 +1,7 @@
 SD-WAN TestPack
 =====================
 
-This repository contains the source code and other files for Testpack.
+This repository contains the source code and other files for Testpack. NEED A DESCRIPTION OF PROJECT HERE..
 
 ## Table of Contents
 - [Installation](https://github.com/SpirentOrion/SDWAN-Testpack#Installation)
@@ -60,7 +60,7 @@ Before test Test execution, you need to know the following information.
     Step2. In the testbeds_lab/sd-wan_testbedMap.py file you will find that for test case id sd-wan.path_selection.002, the physical testbed information being used is 3Stc1Dut_Type01_Testbed02.
 
     Step3. In testbeds_lab/sd-wan.yaml file find the section referenced in Step#2 (3Stc1Dut_Type01_Testbed02) and see that it uses chassis_1, chassis_2, chassis_3, ls_1. You will need modify the ipv4 under stc1, stc2, stc3, spirent_lab_server_1, and slot/port number under chassis_1, chassis_2 and chassis_3.
-    
+
     Step4. Check the Gateway of EmulatedDevices under 3Stc1Dut_Type01_Testbed02, which should be the same as the interfaces' ip on DUT. If they are different, modify the Gateway or change the DUT interface Ip.
     ```
 
