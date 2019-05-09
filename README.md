@@ -18,7 +18,7 @@ These instructions will get you a copy of the project up and running on your loc
 
     Run the following command to install the packages:
     ```
-    sudo apt-get install build-essential python3-dev python3-venv curl git
+    sudo apt-get install make python3-dev python3-venv curl git
     ```
 2. Clone the SD-WAN TestPack repository from Git and cd into that directory:
 
@@ -41,7 +41,17 @@ These instructions will get you a copy of the project up and running on your loc
 ## Testcase Library
 The table below shows a list of all test scripts provided and a brief description of what each one does.
 
-<<INSERT TABLE HERE - 3 columns, Script Name, ID and brief description>>
+| Test Case Name | Test Case ID | Test Area | Test Objective |
+| --- | --- | ----- | ---------- |
+| Path_Selection_L2_to_L4_Steering | sd-wan.path_selection.001 | Path Selection | Validate DUT can steer traffic among WAN links by using traditional L2/L3/L4 traffic classification method |
+| Path_Selection_Application_Aware_Steering | sd-wan.path_selection.002 | Path Selection | Validate DUT can steer traffic among WAN links by using application aware traffic classification method |
+| Resiliency_Link_Blackout_Local_No_Congestion | sd-wan.resiliency_link_blackout.001 | Resiliency Link Blackout | Validate DUT can steer traffic from Internet link to MPLS link if link blackout was detected on internet link and vice versa |
+| Resiliency_Link_Blackout_Remote_No_Congestion | sd-wan.resiliency_link_blackout.002 | Resiliency Link Blackout | Validate DUT can steer traffic from Internet link to MPLS link if link blackout was detected on internet link and vice versa |
+| Resiliency_Link_Brownout_Packet_Loss | sd-wan.resiliency_link_brownout.001 | Resiliency Link Brownout | Validate DUT can steer traffic from Internet link to MPLS link if packet loss ratio on Internet link exceeds threshold and vice versa |
+| Resiliency_Link_Brownout_Packet_Delay | sd-wan.resiliency_link_brownout.002 | Resiliency Link Brownout | Validate DUT can steer traffic from Internet link to MPLS link if two-way delay (from DUT1 to DUT2) on Internet link exceeds threshold and vice versa |
+| Resiliency_Link_Brownout_Jitter | sd-wan.resiliency_link_brownout.003 | Resiliency Link Brownout | Validate DUT can steer traffic from Internet link to MPLS link if jitter on Internet link exceeds threshold and vice versa |
+| Resiliency_Link_Brownout_Out_Of_Order | sd-wan.resiliency_link_brownout.004 | Resiliency Link Brownout | Validate DUT can steer traffic from Internet link to MPLS link if packet out-of-order ratio on Internet link exceeds threshold and vice versa |
+| Resiliency_Link_Brownout_Duplication | sd-wan.resiliency_link_brownout.005 | Resiliency Link Brownout | Validate DUT can steer traffic from Internet link to MPLS link if packet duplication ratio on Internet link exceeds threshold and vice versa |
 
 ## Test Configuration
 Before test Test execution, you need to know the following information.
@@ -81,7 +91,7 @@ For additional details around each test cases please refer to the [TestPack Spec
     robot -v testbed_config:testbeds_lab/sd-wan.yaml -V testbeds_lab/sd-wan_testbedMap.py -t sd-wan.path_selection.002 -d testrun robot/sd-wan/core.robot
     ```  
 
-    Refer to section [Test result](https://github.com/SpirentOrion/SDWAN-Testpack#Test-result) to check test result.
+    Refer to section [Test Results](https://github.com/SpirentOrion/SDWAN-Testpack#Test-Results) to check test result.
 
     Refer to Robot framework user guide for complete syntax of robot command, including pattern matching for selecting testcases to be executed based on testcase ids or tags.
 
