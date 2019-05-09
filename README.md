@@ -42,7 +42,7 @@ These instructions will get you a copy of the project up and running on your loc
 The table below shows a list of all test scripts provided and a brief description of what each one does.
 
 | Test Case Name | Test Case ID | Test Area | Test Objective |
-| :---           | :---         | :---      | :---           |
+| ---            | ---          | ---       | ---            |
 | Path_Selection_L2_to_L4_Steering | sd-wan.path_selection.001 | Path Selection | Validate DUT can steer traffic among WAN links by using traditional L2/L3/L4 traffic classification method |
 | Path_Selection_Application_Aware_Steering | sd-wan.path_selection.002 | Path Selection | Validate DUT can steer traffic among WAN links by using application aware traffic classification method |
 | Resiliency_Link_Blackout_Local_No_Congestion | sd-wan.resiliency_link_blackout.001 | Resiliency Link Blackout | Validate DUT can steer traffic from Internet link to MPLS link if link blackout was detected on internet link and vice versa |
