@@ -1,7 +1,8 @@
 SD-WAN TestPack
 =====================
 
-This repository contains the source code and other files for Testpack. NEED A DESCRIPTION OF PROJECT HERE..
+This repository contains the source code and other files for SD-WAN Testpack. 
+SD-WAN Testpack is bundle of automation-oriented test capabilities aimed to provide an end to end SD-WAN solution relying on feature rich Spirent products. Testpack development is based on open source projects including Python, PyATS, and the Robot Framework. Users will be able to easily configure and execute SD-WAN Test Cases using Testpack. Declarative configuration of test equipment parameters eliminates costly development and setup times. Reliable and easy-to-interpret results are produced.
 
 ## Table of Contents
 - [Installation](https://github.com/SpirentOrion/SDWAN-Testpack#Installation)
@@ -124,9 +125,9 @@ There are several reports/logs that are generated (Robot report files, test scri
    There are STC BLL/IL logs and STC configuration under `testrun/sd-wan.path_selection.002`.  
 
 ## Folder Structure and Naming
-1. Robot files are organized into robot folders, see example: `robot/sd-wan`.
+1. Robot files are organized into testpacks folders, see example: `testpacks/sd-wan`.
 
-Robot automation framework is used as our test runner. Test cases are defined in robot files that accompany Python test scripts. These robot files, such as `robot/sd-wan/core.robot` are the wrappers for Robot framework. They seamlessly call test functions in Python scripts. A set of related test cases can be defined in a single `.robot` script.
+Robot automation framework is used as our test runner. Test cases are defined in robot files that accompany Python test scripts. These robot files, such as `testpacks/sd-wan/core.robot` are the wrappers for Robot framework. They seamlessly call test functions in Python scripts. A set of related test cases can be defined in a single `.robot` script.
 
     Every testcase must have a unique, immutable identifier. This will identify the testcase in the metadata file and in the Robot file. Testcase ids will follow the format **\<testpack>.\<area>.###**, that is the unique testpack name along with a 3 digit testcase number relative to a testpack. For example, `sd-wan.path_selection.002`.
 
@@ -136,6 +137,6 @@ Robot automation framework is used as our test runner. Test cases are defined in
 
     Each testpack has a specification to describe the test cases. See example:`testpacks/sd-wan/"Spirent SD-WAN TestPack Specification.pdf"`.  
 
-3. `testbed_templates` folder is for the logical testbed template. See example: `testbed_templates/sd-wan/3Stc1Dut_Type01.yaml`, which get the information from the Physical lab configuration and generate the final configuration file used by the test script.
+3. `testbed_templates` folder is for the logical testbed template. See example: `testpacks/sd-wan/testbed_templates/3Stc1Dut_Type01.yaml`, which get the information from the Physical lab configuration and generate the final configuration file used by the test script.
 
 4. `testbeds_lab` folder is used for the physical configuration and the mapping file. See example: `testbeds_lab/sd-wan_testbedMap.py`, which defines the mapping for each test case id to section in physical configuration file `testbeds_lab/sd-wan.yaml`
