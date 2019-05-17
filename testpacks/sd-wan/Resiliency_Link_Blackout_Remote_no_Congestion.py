@@ -88,16 +88,6 @@ class Resiliency_Link_Blackout_Remote_no_Congestion(TestBase):
         # Start traffic and verify traffic goes via correct link #
         ##########################################################
         logger.info('Start Traffic and verify traffic goes via correct link')
-        txTrafficRate = int(stc.get(stc.get(generatorClient, 'children-GeneratorConfig'), 'FpsLoad'))
-        totalTrafficRate = int(txTrafficRate * 0.9)
-        halfTrafficRate = int(totalTrafficRate / 2)
-        #<=========Disable SNE to make SNE forward all traffic===========>
-        logger.info('Disable SNE to make SNE forward all traffic')
-        sne.configure()
-        sne.upload(config_file=sneConfigFile)
-        sne.start()
-        sne.disableObject(object_name='DropPackets')
-        time.sleep(configGLobal.waitTimeAfterDisableSne)
         #<=========Start stream which should go via Internet link and verify result===========>
         stc.perform('ResultsClearAllCommand', PortList=project)
         time.sleep(2)
@@ -109,6 +99,8 @@ class Resiliency_Link_Blackout_Remote_no_Congestion(TestBase):
         rxSigCountInternet = stc.get(stc.get(resultPortInternet, 'ResultHandleList').split(' ')[0], 'SigFrameCount')
         if txSigCountClient != rxSigCountInternet:
             raise RuntimeError('Stream named TCP02 and UDP02 should be forwarded via Internet Link, actually send {0} packets from Client port and get {1} packets from Internet port.'.format(txSigCountClient, rxSigCountInternet))
+        else:
+            logger.info('======Traffic go via Internet link correctly======')
         #<=========Start stream which should go via Mpls link and verify result===========>
         stc.perform('ResultsClearAllCommand', PortList=project)
         time.sleep(2)
@@ -120,15 +112,22 @@ class Resiliency_Link_Blackout_Remote_no_Congestion(TestBase):
         rxSigCountMpls = stc.get(stc.get(resultPortMpls, 'ResultHandleList').split(' ')[0], 'SigFrameCount')
         if txSigCountClient != rxSigCountMpls:
             raise RuntimeError('Stream named TCP01 and UDP01 should be forwarded via Mpls Link, actually send {0} packets from Client port and get {1} packets from Mpls port.'.format(txSigCountClient, rxSigCountMpls))
+        else:
+            logger.info('======Traffic go via Mpls link correctly======')
         ##########################################################################
         # Blackout Internet link by SNE, then traffic should switch to Mpls link #
         ##########################################################################
+        txTrafficRate = int(stc.get(stc.get(generatorClient, 'children-GeneratorConfig'), 'FpsLoad'))
+        totalTrafficRate = int(txTrafficRate * 0.9)
         #<=========Start traffic===========>
         stc.perform('ResultsClearAllCommand', PortList=project)
         time.sleep(2)
-        #<=========Blackout Internet link by SNE and verify result===========>
         stc.perform('GeneratorStartCommand', GeneratorList=generatorClient)
-        sne.enableObject(object_name='DropPackets')
+        #<=========Blackout Internet link by SNE and verify result===========>
+        logger.info('Start Sne to blackout Internet link')
+        sne.configure()
+        sne.upload(config_file=sneConfigFile)
+        sne.start()
         for i in range(waitTimesAfterBreakLink):
             time.sleep(configGLobal.waitIntervalAfterBreakLink)
             rxSigRateMpls = stc.get(stc.get(resultPortMpls, 'ResultHandleList').split(' ')[0], 'SigFrameRate')
@@ -142,16 +141,18 @@ class Resiliency_Link_Blackout_Remote_no_Congestion(TestBase):
         rxSigCountMpls = stc.get(stc.get(resultPortMpls, 'ResultHandleList').split(' ')[0], 'SigFrameCount')
         rxSigCountInternet = stc.get(stc.get(resultPortInternet, 'ResultHandleList').split(' ')[0], 'SigFrameCount')
         timeSwitch = int((int(txSigCountClient) - int(rxSigCountMpls) - int(rxSigCountInternet)) * 1000 / txTrafficRate)
+        logger.info('======Traffic switch to mpls link successfully after blackout internet link and Out of service time is {0} ms======\n'.format(timeSwitch))
         msgRobot = '======Traffic switch to mpls link successfully after blackout internet link and Out of service time is {0} ms======\n'.format(timeSwitch)
         ##################################################################################
         # Recover Internet link by SNE, then traffic should switch back to Internet link #
         ##################################################################################
+        halfTrafficRate = int(totalTrafficRate / 2)
         #<=========Start traffic===========>
         stc.perform('ResultsClearAllCommand', PortList=project)
         time.sleep(2)
         #<=========Recover Internet link by SNE and verify result===========>
         stc.perform('GeneratorStartCommand', GeneratorList=generatorClient)
-        sne.disableObject(object_name='DropPackets')
+        sne.stop()
         for i in range(waitTimesAfterRecoverLink):
             time.sleep(configGLobal.waitIntervalAfterRecoverLink)
             rxSigRateInternet = stc.get(stc.get(resultPortInternet, 'ResultHandleList').split(' ')[0], 'SigFrameRate')
@@ -165,5 +166,6 @@ class Resiliency_Link_Blackout_Remote_no_Congestion(TestBase):
         rxSigCountMpls = stc.get(stc.get(resultPortMpls, 'ResultHandleList').split(' ')[0], 'SigFrameCount')
         rxSigCountInternet = stc.get(stc.get(resultPortInternet, 'ResultHandleList').split(' ')[0], 'SigFrameCount')
         timeSwitch = int((int(txSigCountClient) - int(rxSigCountMpls) - int(rxSigCountInternet)) * 1000 / txTrafficRate)
+        logger.info('======Traffic switch back to Internet link successfully after recover internet link and recovery time is {0} ms======\n'.format(timeSwitch))
         msgRobot = msgRobot + '======Traffic switch back to Internet link successfully after recover internet link and recovery time is {0} ms======\n'.format(timeSwitch)
         return msgRobot
