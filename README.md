@@ -42,17 +42,17 @@ These instructions will get you a copy of the project up and running on your loc
 ## Testcase Library
 The table below shows a list of all test scripts provided and a brief description of what each one does.
 
-| Test Case Name | Test Case ID | Test Area | Test Objective |
-| --- | --- | --- | --- |
-| Path_Selection_L2_to_L4_Steering | sd-wan.path_selection.001 | Path Selection | Validate DUT can steer traffic among WAN links by using traditional L2/L3/L4 traffic classification method |
-| Path_Selection_Application_Aware_Steering | sd-wan.path_selection.002 | Path Selection | Validate DUT can steer traffic among WAN links by using application aware traffic classification method |
-| Resiliency_Link_Blackout_Local_No_Congestion | sd-wan.resiliency_link.001 | Resiliency Link Blackout | Validate DUT can steer traffic from Internet link to MPLS link if link blackout was detected on local side of internet link and vice versa |
-| Resiliency_Link_Blackout_Remote_No_Congestion | sd-wan.resiliency_link.002 | Resiliency Link Blackout | Validate DUT can steer traffic from Internet link to MPLS link if link blackout was detected on remote side of internet link and vice versa |
-| Resiliency_Link_Brownout_Packet_Loss | sd-wan.resiliency_link.003 | Resiliency Link Brownout | Validate DUT can steer traffic from Internet link to MPLS link if packet loss ratio on Internet link exceeds threshold and vice versa |
-| Resiliency_Link_Brownout_Packet_Delay | sd-wan.resiliency_link.004 | Resiliency Link Brownout | Validate DUT can steer traffic from Internet link to MPLS link if two-way delay (from DUT1 to DUT2) on Internet link exceeds threshold and vice versa |
-| Resiliency_Link_Brownout_Jitter | sd-wan.resiliency_link.005 | Resiliency Link Brownout | Validate DUT can steer traffic from Internet link to MPLS link if jitter on Internet link exceeds threshold and vice versa |
-| Resiliency_Link_Brownout_Out_Of_Order | sd-wan.resiliency_link.006 | Resiliency Link Brownout | Validate DUT can steer traffic from Internet link to MPLS link if packet out-of-order ratio on Internet link exceeds threshold and vice versa |
-| Resiliency_Link_Brownout_Duplication | sd-wan.resiliency_link.007 | Resiliency Link Brownout | Validate DUT can steer traffic from Internet link to MPLS link if packet duplication ratio on Internet link exceeds threshold and vice versa |
+| Test Case Name | Test Case ID | Test Objective |
+| :---           | ---          | :---           |
+| Path_Selection_L2_to_L4_Steering | sd-wan.path_selection.001 | Validate DUT can steer traffic among WAN links by using traditional L2/L3/L4 traffic classification method |
+| Path_Selection_Application_Aware_Steering | sd-wan.path_selection.002 | Validate DUT can steer traffic among WAN links by using application aware traffic classification method |
+| Resiliency_Link_Blackout_Local_No_Congestion | sd-wan.resiliency_link.001 | Validate DUT can steer traffic from Internet link to MPLS link if link blackout was detected on local side of internet link and vice versa |
+| Resiliency_Link_Blackout_Remote_No_Congestion | sd-wan.resiliency_link.002 | Validate DUT can steer traffic from Internet link to MPLS link if link blackout was detected on remote side of internet link and vice versa |
+| Resiliency_Link_Brownout_Packet_Loss | sd-wan.resiliency_link.003 | Validate DUT can steer traffic from Internet link to MPLS link if packet loss ratio on Internet link exceeds threshold and vice versa |
+| Resiliency_Link_Brownout_Packet_Delay | sd-wan.resiliency_link.004 | Validate DUT can steer traffic from Internet link to MPLS link if two-way delay (from DUT1 to DUT2) on Internet link exceeds threshold and vice versa |
+| Resiliency_Link_Brownout_Jitter | sd-wan.resiliency_link.005 | Validate DUT can steer traffic from Internet link to MPLS link if jitter on Internet link exceeds threshold and vice versa |
+| Resiliency_Link_Brownout_Out_Of_Order | sd-wan.resiliency_link.006 | Validate DUT can steer traffic from Internet link to MPLS link if packet out-of-order ratio on Internet link exceeds threshold and vice versa |
+| Resiliency_Link_Brownout_Duplication | sd-wan.resiliency_link.007 | Validate DUT can steer traffic from Internet link to MPLS link if packet duplication ratio on Internet link exceeds threshold and vice versa |
 
 ## Test Configuration
 Before test Test execution, you need to know the following information.
