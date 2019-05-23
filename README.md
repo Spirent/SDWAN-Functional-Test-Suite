@@ -97,7 +97,7 @@ For additional details around each test cases please refer to the [TestPack Spec
 
     We support -v validate:1 argument for just validating testbed files without running tests.
     ```
-    robot -v testbed_config:testbeds_lab/sd-wan_configuration.yaml -V testbeds_lab/sd-wan_testbed_map.py -t sd-wan.path_selection.002 -v validate:1 -d testrun robot/sd-wan/core.robot
+    robot -v testbed_config:testbeds_lab/sd-wan_configuration.yaml -V testbeds_lab/sd-wan_testbed_map.py -t sd-wan.path_selection.002 -v validate:1 -d testrun testpacks/sd-wan/core.robot
     ```
 
 ## Test results
