@@ -65,9 +65,10 @@ Before test Test execution, you need to know the following information.
 4. For SD-WAN scripts there is no DUT configuration in the test script. You have to configure the DUT manually before running the test. The Gateway of EmulatedDevices are the same as with DUT interface IP.
 
     Example:
-    ```
-    Step1. For this example we will use SD-WAN_Path_Selection_Application_Aware_Steering, which is identified by its Test Case Id sd-wan.path_selection.002.
 
+    > Step1. For this example we will use SD-WAN_Path_Selection_Application_Aware_Steering, which is identified by its Test Case Id sd-wan.path_selection.002.
+
+    ```
     Step2. In the testbeds_lab/sd-wan_testbedMap.py file you will find that for test case id sd-wan.path_selection.002, the physical testbed information being used is 3Stc1Dut_Type01_Testbed02.
 
     Step3. In testbeds_lab/sd-wan.yaml file find the section referenced in Step#2 (3Stc1Dut_Type01_Testbed02) and see that it uses chassis_1, chassis_2, chassis_3, ls_1. You will need modify the ipv4 under stc1, stc2, stc3, spirent_lab_server_1, and slot/port number under chassis_1, chassis_2 and chassis_3.
