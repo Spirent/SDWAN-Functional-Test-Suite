@@ -1,7 +1,7 @@
 SD-WAN TestPack
 =====================
 
-This repository contains the source code and other files for SD-WAN Testpack. 
+This repository contains the source code and other files for SD-WAN Testpack.
 SD-WAN Testpack is bundle of automation-oriented test capabilities aimed to provide an end to end SD-WAN solution relying on feature rich Spirent products. Testpack development is based on open source projects including Python, PyATS, and the Robot Framework. Users will be able to easily configure and execute SD-WAN Test Cases using Testpack. Declarative configuration of test equipment parameters eliminates costly development and setup times. Reliable and easy-to-interpret results are produced.
 
 ## Table of Contents
@@ -43,7 +43,7 @@ These instructions will get you a copy of the project up and running on your loc
 The table below shows a list of all test scripts provided and a brief description of what each one does.
 
 | Test Case Name | Test Case ID | Test Area | Test Objective |
-| --- | --- | ----- | ---------- |
+| --- | --- | --- | --- |
 | Path_Selection_L2_to_L4_Steering | sd-wan.path_selection.001 | Path Selection | Validate DUT can steer traffic among WAN links by using traditional L2/L3/L4 traffic classification method |
 | Path_Selection_Application_Aware_Steering | sd-wan.path_selection.002 | Path Selection | Validate DUT can steer traffic among WAN links by using application aware traffic classification method |
 | Resiliency_Link_Blackout_Local_No_Congestion | sd-wan.resiliency_link_blackout.001 | Resiliency Link Blackout | Validate DUT can steer traffic from Internet link to MPLS link if link blackout was detected on internet link and vice versa |
