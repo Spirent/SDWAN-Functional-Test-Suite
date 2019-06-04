@@ -1,0 +1,3 @@
+[submodule "einstein"]
+	path = einstein
+	url = https://github.com/SpirentOrion/einstein.git
