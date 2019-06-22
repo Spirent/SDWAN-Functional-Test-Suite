@@ -178,13 +178,13 @@ Test execution will generate several reports/logs, for example Robot report file
 
     Robot automation framework is the test runner. Test cases are defined in robot files that accompany Python test scripts. These robot files, such as `testpacks/sd-wan/core.robot` are the wrappers for Robot framework. They seamlessly call test functions in Python scripts. A set of related test cases can be defined in a single `.robot` script.
 
-    Every test case has a unique, immutable identifier. This will identify the test case in the metadata file and in the Robot file. Test case ids follow the format **<testpack>.<area>.###**, that is the unique testpack name along with a 3 digit testcase number relative to a testpack. For example, `sd-wan.path_selection.002`.
+    Every test case has a unique, immutable identifier. This will identify the test case in the metadata file and in the Robot file. Test case ids follow the format **\<testpack>.\<area>.###**, that is the unique testpack name along with a 3 digit testcase number relative to a testpack. For example, `sd-wan.path_selection.002`.
 
 2. Test scripts are organized into testpacks folders **testpacks/sd-wan/**. They are Python based.  
 
     Every test case is accompanied by metadata, see example `testpacks/sd-wan/path_selection_application_aware_steering.yaml`.
 
-    Each testpack has a specification to describe the test cases. See example in the [TestPack Specification](SDWAN-Functional-Test-Suite/blob/master/Spirent%20SD-WAN%20TestPack%20Specification.pdf) document.
+    Each testpack has a specification to describe the test cases. See example in the [TestPack Specification](Spirent%20SD-WAN%20TestPack%20Specification.pdf) document.
 
 3. The **testbed_templates** folder is for the logical testbed template. See example: `testpacks/sd-wan/testbed_templates/3stc_1dut_type01.yaml`, which gets the information from the physical lab configuration and generates the final configuration file used by the test script.
 
