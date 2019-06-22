@@ -20,7 +20,7 @@ The steps below are specific to setup on an Ubuntu 18.04 LTS or Windows Subsyste
 
 1. Requirement: Python3.6 or higher must be installed on your system.
 
-    On Ubuntu run the following command to install additional packages on Ubuntu:
+    On Ubuntu run the following command to install additional packages:
     ```
     sudo apt install python3-pip python3-dev python3-venv git
     ```
@@ -41,7 +41,7 @@ The steps below are specific to setup on an Ubuntu 18.04 LTS or Windows Subsyste
 
 3. Setup your Python virtual environment in the repository root folder.
 
-    Creating the virtual environment in folder `testenv`
+    Creating the virtual environment in folder **testenv**
     ```
     python3 -m venv testenv
     ```
@@ -115,7 +115,7 @@ Before test execution, follow these steps.
 
     > **Step4:** Check the gateway address of emulated_devices under 3stc_1dut_type01_testbed02, which should be the same as the interfaces ip address on the DUT. If they are different, modify the gateway or change the DUT interface ip.
 
-For additional details about each test case, please refer to the [TestPack Specification Document](SDWAN-Functional-Test-Suite/blob/master/Spirent%20SD-WAN%20TestPack%20Specification.pdf). All test cases are explained under their unique Test Case ID in the document.
+For additional details about each test case, please refer to the [TestPack Specification Document](Spirent%20SD-WAN%20TestPack%20Specification.pdf). All test cases are explained under their unique Test Case ID in the document.
 
 
 ## Test Execution
@@ -142,7 +142,7 @@ For additional details about each test case, please refer to the [TestPack Speci
 
     Refer to section [Test Results](#Test-Results) to check the test results.
 
-    Refer to *Robot Framework User Guide* for a complete syntax of robot commands, including pattern matching for selecting test cases to be executed based on test case ids or tags.
+    Refer to **Robot Framework User Guide** for a complete syntax of robot commands, including pattern matching for selecting test cases to be executed based on test case ids or tags.
 
     The -v validate:1 argument is supported for validating testbed files without running tests.
     ```
@@ -152,7 +152,7 @@ For additional details about each test case, please refer to the [TestPack Speci
 ## Test Results
 Output files are configured using robot command line options.
 
-In section:[Test Execution](#Test-Execution), `-d testrun` specifies the results directory as `testrun`.
+In section:[Test Execution](#Test-Execution), `-d testrun` specifies the results directory as **testrun**.
 
 Test execution will generate several reports/logs, for example Robot report files, test script logs, and Spirent TestCenter logs.
 
