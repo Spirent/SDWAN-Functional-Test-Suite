@@ -36,27 +36,27 @@ The steps below are specific to setup on an Ubuntu 18.04 LTS or Windows Subsyste
     ```
     git clone https://github.com/SpirentOrion/SDWAN-Functional-Test-Suite.git
 
-    cd SDWAN-Functional-Test-Suite
+    cd ~/SDWAN-Functional-Test-Suite
     ```
 
 3. Setup your Python virtual environment in the repository root folder.
 
-    Creating the virtual environment in folder **testenv**
+    Create the virtual environment in folder **testenv**
     ```
     python3 -m venv testenv
     ```
 
-    Activating the virtual environment
+    Activate the virtual environment
     ```
     . testenv/bin/activate
     ```
 
-    Adding your root folder to the Python path
+    Add your root folder to the Python path
     ```
-    Example: export PYTHONPATH=/home/spirent/SDWAN-Functional-Test-Suite/
+    export PYTHONPATH=~/SDWAN-Functional-Test-Suite/
     ```
 
-4. Installing the Spirent Testpack framework, SD-WAN Test Suite, and additional dependencies that are needed to execute the tests.
+4. Install the Spirent Testpack framework, SD-WAN Test Suite, and additional dependencies that are needed to execute the tests.
 
     Install wheel as required for pip package installations
     ```
@@ -99,9 +99,9 @@ Before test execution, follow these steps.
 
 1. Identify the test case name and id that you want to execute from the table in the previous section.
 
-2. A mapping file is provided that maps individual test cases to specific topology within the physical testbed configuration file. Find the appropriate physical testbed section that maps to the test case Id from the mapping file `testpacks/sd-wan/testbed_lab/testbed_map.py`.
+2. A mapping file is provided that maps individual test case id's to specific topology within the physical testbed configuration file. Find the appropriate physical testbed section that maps to the test case Id from the mapping file `testpacks/sd-wan/testbed_lab/testbed_map.py`.
 
-3. You must modify the file that describes the physical testbed configuration of your lab. This is a single configuration file to be supplied by the user that contains the complete details of their lab equipments. For example, refer to `testpacks/sd-wan/testbed_lab/configuration.yaml`. Several other Spirent TestCenter configuration parameters are also exposed, if you need to override the defaults.
+3. Once you have identified the physical testbed section that maps to your test case in Step 2, you must modify that section with configuration details specific to your lab. This section can be found in a single configuration file `testpacks/sd-wan/testbed_lab/configuration.yaml` which houses complete details of all testbeds in your lab. Several other Spirent TestCenter configuration parameters are also exposed, if you need to override the defaults.
 
 4. For SD-WAN scripts there is no DUT configuration in the test script. You must configure the DUT manually before running the test. The gateway address of the emulated devices is the same as with DUT interface IP address.
 
@@ -111,24 +111,26 @@ Before test execution, follow these steps.
 
     > **Step2:** In the testpacks/sd-wan/testbed_lab/testbed_map.py file, you will find that for test case id sd-wan.path_selection.002, the physical testbed information being used is 3stc_1dut_type01_testbed02.
 
-    > **Step3:** In testpacks/sd-wan/testbed_lab/configuration.yaml file, find the section referenced in Step#2 ("3stc_1dut_type01_testbed02") and note that it uses chassis_1, chassis_2, chassis_3, ls_1. You must modify the IPv4 address under stc1, stc2, stc3, spirent_lab_server_1, and the slot/port number under chassis_1, chassis_2 and chassis_3.
+    > **Step3:** Find the physical testbed section referenced in Step#2 ("3stc_1dut_type01_testbed02") in the following file testpacks/sd-wan/testbed_lab/configuration.yaml and update it with appropriate values for your lab. Note that it uses chassis_1, chassis_2, chassis_3, ls_1. You must modify the IPv4 address under stc1, stc2, stc3, spirent_lab_server_1, and the slot/port number under chassis_1, chassis_2 and chassis_3.
 
     > **Step4:** Check the gateway address of emulated_devices under 3stc_1dut_type01_testbed02, which should be the same as the interfaces ip address on the DUT. If they are different, modify the gateway or change the DUT interface ip.
 
-For additional details about each test case, please refer to the [TestPack Specification Document](Spirent%20SD-WAN%20TestPack%20Specification.pdf). All test cases are explained under their unique Test Case ID in the document.
+For additional details about each test case, please refer to the [TestPack Specification Document](Spirent%20SD-WAN%20Functional%20Test%20Suite%20Specification.pdf). All test cases are explained under their unique Test Case ID in the document.
 
 
 ## Test Execution
-1. Activate Python 3 venv. From the repository root folder:
+1. Before you execute the tests it is required to activate Python 3 virtual environment and set your Python path.
+
+Note: This setup is only required one time per shell instance.
+
+If you have already done this as part of installation, then proceed to Step 2. Otherwise run the commands below.
     ```
     . testenv/bin/activate
-    ```
-2. Add your root folder to the Python path:
-    ```
-    export PYTHONPATH=/home/spirent/SDWAN-Functional-Test-Suite/
+
+    export PYTHONPATH=~/SDWAN-Functional-Test-Suite/
     ```
 
-3. Run tests from the root folder. You can run tests using robot commands, as follows:
+2. Run tests from the root folder. You can run tests using robot commands, as follows:
     ```
     robot -v testbed_config:testpacks/sd-wan/testbed_lab/configuration.yaml -V testpacks/sd-wan/testbed_lab/testbed_map.py -t sd-wan.path_selection.002 -K off -d testrun testpacks/sd-wan/
     ```
@@ -184,7 +186,7 @@ Test execution will generate several reports/logs, for example Robot report file
 
     Every test case is accompanied by metadata, see example `testpacks/sd-wan/path_selection_application_aware_steering.yaml`.
 
-    Each testpack has a specification to describe the test cases. See example in the [TestPack Specification](Spirent%20SD-WAN%20TestPack%20Specification.pdf) document.
+    Each testpack has a specification to describe the test cases. See example in the [TestPack Specification](Spirent%20SD-WAN%20Functional%20Test%20Suite%20Specification.pdf) document.
 
 3. The **testbed_templates** folder is for the logical testbed template. See example: `testpacks/sd-wan/testbed_templates/3stc_1dut_type01.yaml`, which gets the information from the physical lab configuration and generates the final configuration file used by the test script.
 
