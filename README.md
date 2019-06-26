@@ -99,9 +99,9 @@ Before test execution, follow these steps.
 
 1. Identify the test case name and id that you want to execute from the table in the previous section.
 
-2. A mapping file is provided that maps individual test case id's to specific topology within the physical testbed configuration file. Find the appropriate physical testbed section that maps to the test case Id from the mapping file `testpacks/sd-wan/testbed_lab/testbed_map.py`.
+2. A mapping file `testpacks/sd-wan/testbed_lab/testbed_map.py` is provided that maps individual test case id's to specific testbed sections within the physical testbed configuration file in Step 3. Find the appropriate testbed section that maps to the test case Id from within the mapping file.
 
-3. Once you have identified the physical testbed section that maps to your test case in Step 2, you must modify that section with configuration details specific to your lab. This section can be found in a single configuration file `testpacks/sd-wan/testbed_lab/configuration.yaml` which houses complete details of all testbeds in your lab. Several other Spirent TestCenter configuration parameters are also exposed, if you need to override the defaults.
+3. Once you have identified the physical testbed section that maps to your test case, you must edit that section with configuration details specific to your lab. This section can be found in a single configuration file `testpacks/sd-wan/testbed_lab/configuration.yaml` which houses configuration for all testbeds. Several other Spirent TestCenter configuration parameters are also exposed, if you need to override the defaults.
 
 4. For SD-WAN scripts there is no DUT configuration in the test script. You must configure the DUT manually before running the test. The gateway address of the emulated devices is the same as with DUT interface IP address.
 
