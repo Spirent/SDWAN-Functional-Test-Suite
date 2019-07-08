@@ -34,7 +34,7 @@ The steps below are specific to setup on an Ubuntu 18.04 LTS or Windows Subsyste
 2. Clone the SD-WAN Test Suite repository from Git and cd to that repository root folder.
 
     ```
-    git clone https://github.com/SpirentOrion/SDWAN-Functional-Test-Suite.git
+    git clone https://github.com/Spirent/SDWAN-Functional-Test-Suite.git
 
     cd ~/SDWAN-Functional-Test-Suite
     ```
